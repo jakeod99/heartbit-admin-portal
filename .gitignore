@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# senior project
+admin-portal-reqs.md
