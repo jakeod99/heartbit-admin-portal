@@ -9,7 +9,7 @@ export default function Home() {
       <p>
           This is the home page at the root of the site. 
           It will act as the login page.
-          If already logged in, redirect to search.
+          If already logged in, redirect to search/exercises.
           If not logged in, block access to search and admin.
       </p>
     </div>
