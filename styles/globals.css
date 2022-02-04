@@ -17,15 +17,17 @@ body {
   color: var(--dark-blue);
 }
 
+/* px instead of pt because of nextjs + vercel server-side image optimization */
 .navbar {
-  height: 70pt;
+  height: 70px;
   background-color: var(--blue);
 }
 
+/* px instead of pt because of nextjs + vercel server-side image optimization */
 .logo {
-  width: 54pt;
-  height: 54pt;
-  padding: 8pt 12pt;
+  width: 54px;
+  height: 54px;
+  padding: 8px 12px;
 }
 
 .page-link {
