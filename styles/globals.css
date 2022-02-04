@@ -21,6 +21,7 @@ body {
 .navbar {
   height: 70px;
   background-color: var(--blue);
+  display: flex;
 }
 
 /* px instead of pt because of nextjs + vercel server-side image optimization */
@@ -28,6 +29,7 @@ body {
   width: 54px;
   height: 54px;
   padding: 8px 12px;
+  margin: 0;
 }
 
 .page-link {
