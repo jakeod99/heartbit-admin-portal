@@ -1,0 +1,11 @@
+.image {
+  margin: 10vh 25vw 3vh;
+  width: 50vw;
+  height: 15vw;
+}
+
+.text {
+  margin-bottom: 10vh;
+  text-align: center;
+  font-size: 24pt;
+}
