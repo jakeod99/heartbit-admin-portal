@@ -1,10 +1,14 @@
+import Image from 'next/image';
 import Link from 'next/link'
 import styles from '../styles/404.module.css'
+import flatline from '../public/flatlining.png'
 
 const NotFound = () => {
   return (
     <div className={styles.page}>
-      <img src='/flatlining.png' className={styles.image} />
+      <div className={styles.image}>
+        <Image src={flatline} alt="not found" />
+      </div>
       <div className={styles.text}>
         Oops! Page not found. 
         <br /> 
