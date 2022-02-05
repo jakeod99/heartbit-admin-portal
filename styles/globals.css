@@ -22,18 +22,41 @@ body {
   height: 70px;
   background-color: var(--blue);
   display: flex;
+  font-size: 24px;
+  text-decoration: bold;
 }
 
 /* px instead of pt because of nextjs + vercel server-side image optimization */
 .logo {
   width: 54px;
+  min-width: 54px;
   height: 54px;
+  min-height: 54px;
   padding: 8px 12px;
   margin: 0;
 }
 
+.page-link-container {
+  margin: 40px 0 0 15px;
+}
+
 .page-link {
-  color: var(--light-gray)
+  margin: 0 0 8px 20px;
+}
+
+.page-link,
+.login-link {
+  text-decoration: none;
+  color: var(--light-gray);
+}
+
+.page-link:hover,
+.login-link:hover {
+  color: var(--orange);
+}
+
+.login-link {
+  margin: 40px 12px 0 auto;
 }
 
 .content {
@@ -44,4 +67,44 @@ body {
   margin: 12pt 50pt;
   border-top: 1pt solid var(--dark-gray);
   text-align: center;
+}
+
+@media only screen and (max-width: 860px) {
+  .page-link {
+    margin: 0 0 8px 10px;
+  }
+
+  .login-link {
+    margin: 46px 12px 0 auto;
+  }
+
+  .navbar {
+    font-size: 18px;
+  }
+  
+  .page-link-container {
+    margin: 46px 0 0 10px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .page-link {
+    margin: 0 0 8px 10px;
+  }
+
+  .login-link {
+    margin: 50px 6px 0 auto;
+  }
+
+  .navbar {
+    font-size: 14px;
+  }
+  
+  .page-link-container {
+    margin: 50px 0 0 0;
+  }
+
+  .logo {
+    padding: 8px 0 8px 6px;
+  }
 }

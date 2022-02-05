@@ -9,9 +9,7 @@ const NotFound = () => {
         <Image src='/flatlining.png' width={700} height={200} alt="not found" />
       </div>
       <div className={styles.text}>
-        Oops! Page not found. 
-        <br /> 
-        Try going <Link href="/">Home</Link>.
+        Oops! Page not found.
       </div>
     </div>
    );

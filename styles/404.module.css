@@ -1,7 +1,7 @@
 /* px instead of pt because of nextjs + vercel server-side image optimization */
 .image {
   margin: 10vh auto 3vh;
-  width: 700px;
+  width: 600px;
   height: 200px;
 }
 

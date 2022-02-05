@@ -9,7 +9,7 @@ const Navbar = () => {
           <Image src='/logo.png' width={54} height={54} alt='logo' />
         </div>
       </Link>
-      <div className="page-links">
+      <div className="page-link-container">
         <Link href="/"><a className="page-link">Home</a></Link>
         <Link href="/admin"><a className="page-link">Admin</a></Link>
         <Link href="/groups"><a className="page-link">Groups</a></Link>
