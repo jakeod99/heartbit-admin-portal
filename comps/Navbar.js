@@ -15,7 +15,7 @@ const Navbar = () => {
         <Link href="/groups"><a className="page-link">Groups</a></Link>
         <Link href="/exercises"><a className="page-link">Exercises</a></Link>
         <Link href="/participants"><a className="page-link">Participants</a></Link>
-        <Link href="/info"><a className="page-link">System Info</a></Link>
+        <Link href="/help"><a className="page-link">Help</a></Link>
       </div>      
       <Link href="/login"><a className="login-link">Login</a></Link>
     </nav>
