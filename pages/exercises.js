@@ -1,9 +1,40 @@
 import { gql, useLazyQuery } from "@apollo/client"
+import ExercisesTable from "../comps/ExercisesTable";
 
 const Exercises = () => {
   const EXERCISES_QUERY = gql`
-    query GetExercises {
-      exercises {
+    query GetExercises (
+      $youngest: Int
+      $oldest: Int
+      $lightest: Int
+      $heaviest: Int
+      $email: String
+      $groupId: String
+      $sex: [Sex]
+      $gender: [Gender]
+      $race: [Race]
+      $smoking: [SmokingHistory]
+      $vaping: [VapingHistory]
+      $earliestCollection: DateTime
+      $latestCollection: DateTime
+      $clean: [ExerciseStatus]
+    ) {
+      exercises(
+        youngest: $youngest,
+        oldest: $oldest,
+        lightest: $lightest,
+        heaviest: $heaviest,
+        email: $email,
+        groupId: $groupId,
+        sex: $sex,
+        gender: $gender,
+        race: $race,
+        smoking: $smoking,
+        vaping: $vaping,
+        earliestCollection: $earliestCollection,
+        latestCollection: $latestCollection,
+        clean: $clean,
+      ) {
         id,
         bpmIn,
         bpmOut,
@@ -21,43 +52,25 @@ const Exercises = () => {
     }
   `;
 
-  const [getExercises, { loading, error, data }] = useLazyQuery(EXERCISES_QUERY);
+  const [getExercises, { loading, error, data }] = useLazyQuery(EXERCISES_QUERY, {
+    fetchPolicy: "no-cache" // Performance hit, but solves lack of overwrite on new fetch
+  });
 
   return ( 
     <div className="exercises-page">
-      <button onClick={() => getExercises()}>Click for exercises</button>
-      <table>
-        <tr>
-          <th>Date Collected</th>
-          {/* <th>Group ID</th> */}
-          <th>Email</th>
-          <th>Date of Birth</th>
-          <th>Sex</th>
-          <th>Gender</th>
-          <th>Race</th>
-          <th>Weight</th>
-          <th>Inhale BPM</th>
-          <th>Exhale BPM</th>
-          <th>Readings</th>
-          <th>Clean?</th>
-        </tr>
-        {data?.exercises?.map(exercise => (
-          <tr>
-            <th>{exercise.dateCollected}</th>
-            {/* <th>Group ID</th> */}
-            <th>{exercise.user.email}</th>
-            <th>{exercise.user.dob}</th>
-            <th>{exercise.user.sex}</th>
-            <th>{exercise.user.gender}</th>
-            <th>{exercise.user.race}</th>
-            <th>{exercise.user.weight}</th>
-            <th>{exercise.bpmIn}</th>
-            <th>{exercise.bpmOut}</th>
-            <th>BUTTON TBD</th>
-            <th>{exercise.status}</th>
-          </tr>
-        ))}
-      </table>
+      <button onClick={async () => getExercises()}>
+        All Exercises
+      </button>
+      <button onClick={async () => getExercises({ variables: { 
+        youngest: 20, 
+        oldest: 40, 
+        sex: ["FEMALE"], 
+        race: ["ASAIN"] 
+      }})}>
+        Exercises for Asian Females Aged 20-40
+      </button>
+
+      <ExercisesTable data={data}/>
     </div>
   );
 }
