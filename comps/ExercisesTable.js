@@ -1,45 +1,49 @@
 const ExercisesTable = ({ data }) => {
   if (data) {
     return ( 
-      <table>
-        <thead>
-          <tr>
-            <th>Date Collected</th>
-            {/* <th>Group ID</th> */}
-            <th>Email</th>
-            <th>Date of Birth</th>
-            <th>Sex</th>
-            <th>Gender</th>
-            <th>Race</th>
-            <th>Weight</th>
-            <th>Inhale BPM</th>
-            <th>Exhale BPM</th>
-            <th>Readings</th>
-            <th>Clean?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.exercises?.map(exercise => (
+      <div className="etable-container">
+        <table className="etable">
+          <thead className="etable-head">
             <tr>
-              <th>{exercise.dateCollected}</th>
+              <th className="etable-head-date-collected">Date Collected</th>
               {/* <th>Group ID</th> */}
-              <th>{exercise.user.email}</th>
-              <th>{exercise.user.dob}</th>
-              <th>{exercise.user.sex}</th>
-              <th>{exercise.user.gender}</th>
-              <th>{exercise.user.race}</th>
-              <th>{exercise.user.weight}</th>
-              <th>{exercise.bpmIn}</th>
-              <th>{exercise.bpmOut}</th>
-              <th>Download Button (soon)</th>
-              <th>{exercise.status}</th>
+              <th className="etable-head-email">Email</th>
+              <th className="etable-head-dob">Date of Birth</th> 
+              <th className="etable-head-sex">Sex</th>
+              <th className="etable-head-gender">Gender</th>
+              <th className="etable-head-race">Race</th>
+              <th className="etable-head-weight">Weight</th>
+              <th className="etable-head-bpm-in">Inhale BPM</th>
+              <th className="etable-head-bpm-out">Exhale BPM</th>
+              <th className="etable-head-data">Readings</th>
+              <th className="etable-head-clean">Clean?</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="etable-body">
+            {data?.exercises?.map(exercise => (
+              <tr>
+                <th>{exercise.dateCollected.split("T")[0]}</th>
+                {/* <th>Group ID</th> */}
+                <th>{exercise.user.email}</th>
+                <th>{exercise.user.dob.split("T")[0]}</th>
+                <th>{exercise.user.sex}</th>
+                <th>{exercise.user.gender}</th>
+                <th>{exercise.user.race}</th>
+                <th>{exercise.user.weight}lbs</th>
+                <th>{exercise.bpmIn}bpm</th>
+                <th>{exercise.bpmOut}bpm</th>
+                <th>Download (soon)</th>
+                <th>{exercise.status}</th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   } else {
-    return ( <></> );
+    return ( 
+      <></>
+    );
   }
 }
  
