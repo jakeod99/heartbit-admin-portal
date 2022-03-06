@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 class ExercisesForm extends React.Component {
   constructor(props) {
@@ -23,23 +24,24 @@ class ExercisesForm extends React.Component {
   }
 
   render() {
-    const variables = {
-      variables: this.state
-    };
-
     return (
       <div className="ef-container">
-        <button onClick={() => this.props.getExercises(variables)}>
-          All Exercises
-        </button>
-        <button onClick={() => this.props.getExercises({ variables: { 
-          youngest: 10, 
-          oldest: 60, 
-          sex: ["MALE"], 
-          race: ["ASIAN"] 
-        }})}>
-          Exercises for Asian Males Aged 10-60
-        </button>
+        <div className="ef-age-range-container"></div>
+        <div className="ef-weight-range-container"></div>
+        <div className="ef-email-container"></div>
+        <div className="ef-group-container"></div>
+        <div className="ef-date-range-container"></div>
+        <div className="ef-sex-container"></div>
+        <div className="ef-tobacco-container"></div>
+        <div className="ef-vape-container"></div>
+        <div className="ef-gender-container"></div>
+        <div className="ef-race-container"></div>
+        <div className="ef-clean-container"></div>
+        <Button className="ef-submit" variant="primary" onClick={() => this.props.getExercises({
+          variables: this.state
+        })}>
+          Search
+        </Button>
       </div>
     )
   }
