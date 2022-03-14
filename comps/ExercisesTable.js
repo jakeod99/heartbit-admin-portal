@@ -1,43 +1,47 @@
+import { Button, Table } from "react-bootstrap";
+
 const ExercisesTable = ({ data }) => {
   if (data) {
     return ( 
-      <div className="etable-container">
-        <table className="etable">
-          <thead className="etable-head">
+      <div className="et-container">
+        <Table striped className="et">
+          <thead className="et-head">
             <tr>
-              <th className="etable-head-date-collected">Date Collected</th>
+              <th className="et-head-date-collected">Collected</th>
               {/* <th>Group ID</th> */}
-              <th className="etable-head-email">Email</th>
-              <th className="etable-head-dob">Date of Birth</th> 
-              <th className="etable-head-sex">Sex</th>
-              <th className="etable-head-gender">Gender</th>
-              <th className="etable-head-race">Race</th>
-              <th className="etable-head-weight">Weight</th>
-              <th className="etable-head-bpm-in">Inhale BPM</th>
-              <th className="etable-head-bpm-out">Exhale BPM</th>
-              <th className="etable-head-data">Readings</th>
-              <th className="etable-head-clean">Clean?</th>
+              <th className="et-head-email">Email</th>
+              <th className="et-head-dob">Date of Birth</th> 
+              <th className="et-head-sex">Sex</th>
+              <th className="et-head-gender">Gender</th>
+              <th className="et-head-race">Race</th>
+              <th className="et-head-weight">Weight</th>
+              <th className="et-head-bpm-in">Inhale</th>
+              <th className="et-head-bpm-out">Exhale</th>
+              <th className="et-head-data">Readings</th>
+              <th className="et-head-clean">Clean?</th>
             </tr>
           </thead>
-          <tbody className="etable-body">
+          <tbody className="et-body">
             {data?.exercises?.map(exercise => (
               <tr>
-                <th>{exercise.dateCollected.split("T")[0]}</th>
+                <td className="et-head-date-collected">{exercise.dateCollected.split("T")[0]}</td>
                 {/* <th>Group ID</th> */}
-                <th>{exercise.user.email}</th>
-                <th>{exercise.user.dob.split("T")[0]}</th>
-                <th>{exercise.user.sex}</th>
-                <th>{exercise.user.gender}</th>
-                <th>{exercise.user.race}</th>
-                <th>{exercise.user.weight}lbs</th>
-                <th>{exercise.bpmIn}bpm</th>
-                <th>{exercise.bpmOut}bpm</th>
-                <th>Download (soon)</th>
-                <th>{exercise.status}</th>
+                <td className="et-head-email">{exercise.user.email}</td>
+                <td className="et-head-dob">{exercise.user.dob.split("T")[0]}</td>
+                <td className="et-head-sex">{exercise.user.sex}</td>
+                <td className="et-head-gender">{exercise.user.gender.replace(/_/g, " ").replace("GENDER ", "")}</td>
+                <td className="et-head-race">{exercise.user.race.replace(/_/g, " ")}</td>
+                <td className="et-head-weight">{exercise.user.weight}lbs</td>
+                <td className="et-head-bpm-in">{exercise.bpmIn}bpm</td>
+                <td className="et-head-bpm-out">{exercise.bpmOut}bpm</td>
+                <td className="et-head-data">
+                  <Button variant="primary">TODO</Button>
+                </td>
+                <td className="et-head-clean">{exercise.status.replace("DIRTY", "RAW")}</td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
     );
   } else {
