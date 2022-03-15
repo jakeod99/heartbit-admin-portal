@@ -28,9 +28,15 @@ class ExercisesForm extends React.Component {
   }  
   
   handleChange(event) {
-    const valueAsInt = parseInt(event.target.value)
-    const value = valueAsInt ? valueAsInt : event.target.value;
-    this.setState({[event.target.name]: (value == "" ? undefined : value)});
+    let value;
+    if (event.target.type == "date") {
+      value = event.target.value != "" ? event.target.value + "T00:00:00Z" : undefined;
+    } else {
+      const valueAsInt = parseInt(event.target.value)
+      value = valueAsInt ? valueAsInt : event.target.value;
+    }
+    value = value == "" ? undefined : value;
+    this.setState({[event.target.name]: value});
   }
 
   handleCheckboxChange(event) {
