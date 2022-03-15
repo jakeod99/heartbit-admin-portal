@@ -72,16 +72,22 @@ body {
 
 .ef-age-range-container,
 .ef-weight-range-container {
-  padding: 0 3px;
+  padding: 25px 3px 0 3px;
 }
 
 .ef-email-container,
 .ef-group-container {
-  padding-top: 5px;
+  padding-top: 20px;
 }
 
 .ef-collection-range-container {
-  padding: 5px 3px 0 3px;
+  padding: 20px 3px 0 3px;
+}
+
+.ef-gender-container,
+.ef-vape-container,
+.ef-clean-container {
+  padding-top: 10px;
 }
 
 .ef-age-range-label,
@@ -91,6 +97,20 @@ body {
 .ef-collection-range-label {
   text-align: center;
   margin: 1px auto;
+}
+
+.ef-age-range-label,
+.ef-weight-range-label,
+.ef-email-label,
+.ef-group-label,
+.ef-collection-range-label,
+.ef-sex-label,
+.ef-gender-label,
+.ef-tobacco-label,
+.ef-vape-label,
+.ef-clean-label,
+.ef-race-label {
+  font-weight: bold;
 }
 
 .ef-age-range-young,
@@ -108,6 +128,16 @@ body {
   max-width: 5px;
   padding: 0;
   margin: auto;
+}
+
+.ef-submit {
+  padding: 10px 20px;
+  font-size: 32px;
+  margin: 25px 0 0 0;
+}
+
+.ef-submit:hover {
+  color: var(--orange);
 }
 
 .et {

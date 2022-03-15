@@ -15,6 +15,8 @@ const ExercisesTable = ({ data }) => {
               <th className="et-head-gender">Gender</th>
               <th className="et-head-race">Race</th>
               <th className="et-head-weight">Weight</th>
+              <th className="et-head-tobacco">Tobacco</th>
+              <th className="et-head-vape">Vape</th>
               <th className="et-head-bpm-in">Inhale</th>
               <th className="et-head-bpm-out">Exhale</th>
               <th className="et-head-data">Readings</th>
@@ -32,6 +34,8 @@ const ExercisesTable = ({ data }) => {
                 <td className="et-body-gender">{exercise.user.gender.replace(/_/g, " ").replace("GENDER ", "")}</td>
                 <td className="et-body-race">{exercise.user.race.replace(/_/g, " ")}</td>
                 <td className="et-body-weight">{exercise.user.weight}lbs</td>
+                <td className="et-body-tobacco">{exercise.user.smoking}</td>
+                <td className="et-body-vape">{exercise.user.vaping}</td>
                 <td className="et-body-bpm-in">{exercise.bpmIn}bpm</td>
                 <td className="et-body-bpm-out">{exercise.bpmOut}bpm</td>
                 <td className="et-body-data">

@@ -44,6 +44,8 @@ const EXERCISES_QUERY = gql`
         sex,
         gender,
         race,
+        smoking,
+        vaping,
         weight
       }
     }
