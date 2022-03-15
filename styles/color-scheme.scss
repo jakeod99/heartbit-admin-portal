@@ -1,0 +1,36 @@
+:root {
+  --light-blue: #91CFDE;
+  --blue: #3E5E8E;
+  --dark-blue: #0E1C36;
+  --red: #D04E6A;
+  --orange: #FBA43C;
+  --maroon: #491C07;
+  --light-gray: #F5F5F5;
+  --gray: #E0E0E0;
+  --dark-gray: #CCCCCC;
+}
+
+$theme-colors: (
+  // Override Bootstrap Defaults
+  "primary": #3E5E8E,
+  "secondary": #CCCCCC,
+  "success": #91CFDE,
+  "warning": #FBA43C,
+  "danger": #D04E6A,
+  "info": #491C07,
+  "light": #F5F5F5,
+  "dark": #0E1C36,
+
+  // Introduce Custom Variants
+  "light-blue": #91CFDE,
+  "blue": #3E5E8E,
+  "dark-blue": #0E1C36,
+  "red": #D04E6A,
+  "orange": #FBA43C,
+  "maroon": #491C07,
+  "light-gray": #F5F5F5,
+  "gray": #E0E0E0,
+  "dark-gray": #CCCCCC
+);
+
+@import "~bootstrap/scss/bootstrap"

@@ -1,0 +1,210 @@
+@import 'color-scheme';
+
+body {
+  margin: 0 !important;
+  font-family: Helvetica, sans-serif !important;
+  background-color: var(--light-gray) !important;
+  color: var(--dark-blue) !important;
+}
+
+/* px instead of pt because of nextjs + vercel server-side image optimization */
+.navbar {
+  height: 70px;
+  background-color: var(--blue);
+  align-content: center;
+  font-size: 24px;
+  text-decoration: none !important;
+  padding-bottom: 0;
+}
+
+/* px instead of pt because of nextjs + vercel server-side image optimization */
+.logo {
+  width: 54px;
+  min-width: 54px;
+  height: 54px;
+  min-height: 54px;
+  margin: 0 0 8px 8px;
+}
+
+.page-link-container {
+  display: flex;
+  margin: auto 0 0 15px;
+}
+
+.page-link {
+  padding: 0;
+  margin: 0 20px 0 0;
+}
+
+.login-link {
+  margin: auto 12px 0 auto;
+  text-decoration: none !important;
+}
+
+.page-link,
+.login-link {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--light-gray) !important;
+}
+
+.page-link:hover,
+.login-link:hover {
+  color: var(--orange) !important;
+}
+
+.page-link:focus,
+.login-link:focus {
+  box-shadow: none;
+}
+
+.content {
+  margin: 0 10pt;
+}
+
+.ef-container {
+  background-color: var(--gray);
+  margin-top: 10px;
+  padding: 5px 15px;
+  border: 1px solid var(--maroon);
+  border-radius: 5px;
+}
+
+.ef-age-range-container,
+.ef-weight-range-container {
+  padding: 25px 3px 0 3px;
+}
+
+.ef-email-container,
+.ef-group-container {
+  padding-top: 20px;
+}
+
+.ef-collection-range-container {
+  padding: 20px 3px 0 3px;
+}
+
+.ef-gender-container,
+.ef-vape-container,
+.ef-clean-container {
+  padding-top: 10px;
+}
+
+.ef-age-range-label,
+.ef-weight-range-label,
+.ef-email-label,
+.ef-group-label,
+.ef-collection-range-label {
+  text-align: center;
+  margin: 1px auto;
+}
+
+.ef-age-range-label,
+.ef-weight-range-label,
+.ef-email-label,
+.ef-group-label,
+.ef-collection-range-label,
+.ef-sex-label,
+.ef-gender-label,
+.ef-tobacco-label,
+.ef-vape-label,
+.ef-clean-label,
+.ef-race-label {
+  font-weight: bold;
+}
+
+.ef-age-range-young,
+.ef-age-range-old,
+.ef-weight-range-light,
+.ef-weight-range-heavy,
+.ef-collection-range-earliest,
+.ef-collection-range-latest {
+  width: 47%;
+}
+
+.ef-age-range-dash,
+.ef-weight-range-dash,
+.ef-collection-range-dash {
+  max-width: 5px;
+  padding: 0;
+  margin: auto;
+}
+
+.ef-submit {
+  padding: 10px 20px;
+  font-size: 32px;
+  margin: 25px 0 0 0;
+}
+
+.ef-submit:hover {
+  color: var(--orange);
+}
+
+.et {
+  margin-top: 25px;
+}
+
+.et > thead > tr > th,
+.et > tbody > tr > td {
+  color: var(--dark-blue) !important;
+}
+
+.et-body {
+  border-color: var(--orange) !important;
+}
+
+.et-body > * {
+  border-color: var(--gray);
+}
+
+.et-head-dob,
+.et-body-dob {
+  min-width: 115px;
+}
+
+.et-head-date-collected, 
+.et-body-date-collected {
+  min-width: 105px;
+}
+
+.footer {
+  margin: 12pt 50pt;
+  border-top: 1pt solid var(--dark-gray);
+  text-align: center;
+}
+
+@media only screen and (max-width: 770px) {
+  .page-link {
+    margin: 0 12px 0 0;
+  }
+
+  .login-link {
+    margin: auto 12px 0 auto;
+  }
+
+  .navbar {
+    font-size: 18px;
+  }
+  
+  .page-link-container {
+    margin: auto 0 0 10px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .page-link {
+    margin: 0 10px 0 0;
+  }
+
+  .login-link {
+    margin: auto 6px 0 auto;
+  }
+
+  .navbar {
+    font-size: 14px;
+  }
+  
+  .page-link-container {
+    margin: auto 0 0 5px;
+  }
+}

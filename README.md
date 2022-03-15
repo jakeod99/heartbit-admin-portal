@@ -4,7 +4,7 @@ To visit the HeartBit Admin Portal, follow this link: https://heartbit-admin-por
 
 This site was built with Next.js and is hosted on Vercel.
 
-Dr. B and his researchers can use this web portal to interact directly with their HRV study data. Once logged in, they can perform intuitive data searches on the `search` page, and they can perform administrative task on the `admin` page.
+Dr. B and his researchers can use this web portal to interact directly with their HRV study data. Once logged in, they can perform intuitive data searches on the `exercises` and `participants` pages, and they can perform administrative task on the `admin` page.
 
 ## Information from Next.js
 
