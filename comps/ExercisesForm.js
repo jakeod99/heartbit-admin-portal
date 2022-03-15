@@ -31,6 +31,7 @@ class ExercisesForm extends React.Component {
     const valueAsInt = parseInt(event.target.value)
     const value = valueAsInt ? valueAsInt : event.target.value;
     this.setState({[event.target.name]: value});
+    this.setState({[event.target.name]: (value == "" ? undefined : value)});
   }
 
   handleCheckboxChange(event) {
