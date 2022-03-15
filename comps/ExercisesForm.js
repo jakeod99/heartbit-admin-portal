@@ -30,7 +30,6 @@ class ExercisesForm extends React.Component {
   handleChange(event) {
     const valueAsInt = parseInt(event.target.value)
     const value = valueAsInt ? valueAsInt : event.target.value;
-    this.setState({[event.target.name]: value});
     this.setState({[event.target.name]: (value == "" ? undefined : value)});
   }
 
