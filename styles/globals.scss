@@ -28,12 +28,12 @@ body {
 
 .page-link-container {
   display: flex;
-  margin: auto 0 0 15px;
+  margin: auto 0 0 35px;
 }
 
 .page-link {
   padding: 0;
-  margin: 0 20px 0 0;
+  margin: 0 35px 0 0;
 }
 
 .login-link {
@@ -85,8 +85,7 @@ body {
 }
 
 .ef-gender-container,
-.ef-vape-container,
-.ef-clean-container {
+.ef-vape-container {
   padding-top: 10px;
 }
 
@@ -108,7 +107,6 @@ body {
 .ef-gender-label,
 .ef-tobacco-label,
 .ef-vape-label,
-.ef-clean-label,
 .ef-race-label {
   font-weight: bold;
 }
@@ -173,6 +171,8 @@ body {
   text-align: center;
 }
 
+/*
+// uncomment for navbar-width responsive styling (if we make more pages)
 @media only screen and (max-width: 770px) {
   .page-link {
     margin: 0 12px 0 0;
@@ -208,3 +208,4 @@ body {
     margin: auto 0 0 5px;
   }
 }
+*/

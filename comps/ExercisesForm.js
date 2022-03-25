@@ -19,7 +19,6 @@ class ExercisesForm extends React.Component {
       vaping: undefined,                // [VapingHistory]
       earliestCollection: undefined,    // DateTime
       latestCollection: undefined,      // DateTime
-      clean: undefined                  // [ExerciseStatus]
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,15 +27,19 @@ class ExercisesForm extends React.Component {
   }  
   
   handleChange(event) {
-    let value;
-    if (event.target.type == "date") {
-      value = event.target.value != "" ? event.target.value + "T00:00:00Z" : undefined;
-    } else {
-      const valueAsInt = parseInt(event.target.value)
-      value = valueAsInt ? valueAsInt : event.target.value;
+    if (event.target.type == "checkbox") {
+      this.handleCheckboxChange(event);
+    } else { 
+      let value;
+      if (event.target.type == "date") {
+        value = event.target.value != "" ? event.target.value + "T00:00:00Z" : undefined;
+      } else {
+        const valueAsInt = parseInt(event.target.value)
+        value = valueAsInt ? valueAsInt : event.target.value;
+      }
+      value = value == "" ? undefined : value;
+      this.setState({[event.target.name]: value});
     }
-    value = value == "" ? undefined : value;
-    this.setState({[event.target.name]: value});
   }
 
   handleCheckboxChange(event) {
@@ -55,14 +58,26 @@ class ExercisesForm extends React.Component {
       }
     }
     this.setState({[stateKey]: stateValue});
-    console.log(stateKey + " " + boxValue + " " + checked + " " + stateValue);
   }
 
   handleSubmit(event) {
-    // handleSubmit = (this.props) = (event) => {
     event.preventDefault();
     this.props.getExercises({
-      variables: this.state
+      variables: {
+        youngest: this.state.youngest,
+        oldest: this.state.oldest,
+        lightest: this.state.lightest,
+        heaviest: this.state.heaviest,
+        email: this.state.email,
+        groupId: this.state.groupId,
+        sex: this.state.sex,
+        gender: this.state.gender,
+        race: this.state.race,
+        smoking: this.state.smoking,
+        vaping: this.state.vaping,
+        earliestCollection: this.state.earliestCollection,
+        latestCollection: this.state.latestCollection
+      }
     })
   }
 
@@ -163,19 +178,19 @@ class ExercisesForm extends React.Component {
                   name="sex-FEMALE" 
                   type="checkbox"
                   label="Female"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="sex-MALE" 
                   type="checkbox"
                   label="Male"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="sex-INTERSEX" 
                   type="checkbox"
                   label="Intersex"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
               </div>
               <div className="ef-gender-container">
@@ -184,37 +199,37 @@ class ExercisesForm extends React.Component {
                   name="gender-FEMALE" 
                   type="checkbox"
                   label="Female"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="gender-MALE" 
                   type="checkbox"
                   label="Male"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="gender-TRANS_FEMALE" 
                   type="checkbox"
                   label="Trans Female"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="gender-TRANS_MALE" 
                   type="checkbox"
                   label="Trans Male"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="gender-GENDER_NON_CONFORMING" 
                   type="checkbox"
                   label="Non Conforming"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="gender-OTHER" 
                   type="checkbox"
                   label="Other"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
               </div>
             </Col>
@@ -225,19 +240,19 @@ class ExercisesForm extends React.Component {
                   name="smoking-CURRENT" 
                   type="checkbox"
                   label="Current"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="smoking-FORMER" 
                   type="checkbox"
                   label="Former"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="smoking-NEVER" 
                   type="checkbox"
                   label="Never"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
               </div>
               <div className="ef-vape-container">
@@ -246,34 +261,19 @@ class ExercisesForm extends React.Component {
                   name="vaping-CURRENT" 
                   type="checkbox"
                   label="Current"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="vaping-FORMER" 
                   type="checkbox"
                   label="Former"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="vaping-NEVER" 
                   type="checkbox"
                   label="Never"
-                  onChange={this.handleCheckboxChange}
-                />
-              </div>
-              <div className="ef-clean-container">
-                <div className="ef-clean-label">Clean</div>
-                <Form.Check 
-                  name="clean-CLEAN" 
-                  type="checkbox"
-                  label="Clean"
-                  onChange={this.handleCheckboxChange}
-                />
-                <Form.Check 
-                  name="clean-DIRTY" 
-                  type="checkbox"
-                  label="Raw"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
               </div>
             </Col>
@@ -284,31 +284,31 @@ class ExercisesForm extends React.Component {
                   name="race-ASIAN" 
                   type="checkbox"
                   label="Asian"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="race-BLACK" 
                   type="checkbox"
                   label="Black or African-American"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="race-NATIVE_AMERICAN" 
                   type="checkbox"
                   label="Native American / Alaska Native"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="race-PACIFIC_ISLANDER" 
                   type="checkbox"
                   label="Native Hawaiian / Pacific Islander"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
                 <Form.Check 
                   name="race-WHITE" 
                   type="checkbox"
                   label="White"
-                  onChange={this.handleCheckboxChange}
+                  onChange={this.handleChange}
                 />
               </div>
               <Button className="ef-submit" variant="info" type="submit" md={3}>

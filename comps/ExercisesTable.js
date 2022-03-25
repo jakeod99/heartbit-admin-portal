@@ -20,7 +20,6 @@ const ExercisesTable = ({ data }) => {
               <th className="et-head-bpm-in">Inhale</th>
               <th className="et-head-bpm-out">Exhale</th>
               <th className="et-head-data">Readings</th>
-              <th className="et-head-clean">Clean?</th>
             </tr>
           </thead>
           <tbody className="et-body">
@@ -41,7 +40,6 @@ const ExercisesTable = ({ data }) => {
                 <td className="et-body-data">
                   <Button variant="primary">TODO</Button>
                 </td>
-                <td className="et-body-clean">{exercise.status.replace("DIRTY", "RAW")}</td>
               </tr>
             ))}
           </tbody>
