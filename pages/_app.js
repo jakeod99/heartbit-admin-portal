@@ -14,9 +14,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Auth0Provider
-      domain="dev-3545j3mc.us.auth0.com"
-      clientId="ukC5AeYycbfTRViZlKn2dITtOAN911s0"
-      redirectUri={router.asPath}
+      domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN}
+      clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}
+      redirectUri={process.env.NEXT_PUBLIC_AUTH0_REDIRECT}
     >
       <SSRProvider>
         <ApolloProvider client={client}>
