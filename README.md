@@ -6,6 +6,18 @@ This site was built with Next.js and is hosted on Vercel.
 
 Dr. B and his researchers can use this web portal to interact directly with their HRV study data. Once logged in, they can perform intuitive data searches and download whatever datasets they need to store locally.
 
+## Installation for Development
+
+Run the following:
+```bash
+npm install
+```
+
+Create a file for local environment variables `.env.local` at the root of the project. Add the following to it (altering the port according to your local configuration):
+```
+NEXT_PUBLIC_AUTH0_REDIRECT=http://localhost:3000
+```
+
 ## Running for Development
 
 To run the development server:
