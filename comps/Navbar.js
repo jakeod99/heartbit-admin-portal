@@ -1,7 +1,32 @@
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+import Image from 'next/image';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Navbar = () => {
+  const { 
+    error,
+    user,
+    loginWithRedirect,
+    logout
+  } = useAuth0();
+
+  let authLink;
+  if (user || error) { // Some user is logged in or an error has occured
+    authLink = (
+      <a className="login-link" onClick={() => {
+        logout({ returnTo: process.env.NEXT_PUBLIC_AUTH0_REDIRECT })
+      }}>
+        Logout
+      </a>
+    )
+  } else {
+    authLink = (
+      <a className="login-link" onClick={loginWithRedirect}>
+        Login
+      </a>
+    )
+  }
+
   return ( 
     <nav className="navbar">
       <Link href='/'>
@@ -10,14 +35,11 @@ const Navbar = () => {
         </div>
       </Link>
       <div className="page-link-container">
-        <Link href="/"><a className="page-link">Home</a></Link>
-        <Link href="/admin"><a className="page-link">Admin</a></Link>
-        <Link href="/groups"><a className="page-link">Groups</a></Link>
-        <Link href="/exercises"><a className="page-link">Exercises</a></Link>
-        <Link href="/participants"><a className="page-link">Participants</a></Link>
+        <Link href="/exercises"><a className="page-link">Data</a></Link>
         <Link href="/help"><a className="page-link">Help</a></Link>
-      </div>      
-      <Link href="/login"><a className="login-link">Login</a></Link>
+      </div>
+
+      {authLink}
     </nav>
   );
 }

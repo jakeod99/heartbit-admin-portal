@@ -15,7 +15,6 @@ const EXERCISES_QUERY = gql`
     $vaping: [VapingHistory]
     $earliestCollection: DateTime
     $latestCollection: DateTime
-    $clean: [ExerciseStatus]
   ) {
     exercises(
       youngest: $youngest,
@@ -31,7 +30,6 @@ const EXERCISES_QUERY = gql`
       vaping: $vaping,
       earliestCollection: $earliestCollection,
       latestCollection: $latestCollection,
-      clean: $clean,
     ) {
       id,
       bpmIn,
