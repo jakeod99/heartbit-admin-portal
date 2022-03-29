@@ -1,17 +1,16 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import styles from '../styles/404.module.css'
+import Error from '../comps/Error';
 
-const NotFound = () => {
+const NotFound = ({content, alt}) => {
   return (
-    <div className={styles.page}>
-      <div className={styles.image}>
-        <Image src='/flatlining.png' width={700} height={200} alt="not found" />
-      </div>
-      <div className={styles.text}>
-        Oops! Page not found.
-      </div>
-    </div>
+    <Error content={"Oops! Page not found."} alt="not found" />
+    // <div>
+    //   <div className="nf-image">
+    //     <Image src='/flatlining.png' width={700} height={200} alt="not found" />
+    //   </div>
+    //   <div className="nf-text">
+    //     Oops! Page not found.
+    //   </div>
+    // </div>
    );
 }
  

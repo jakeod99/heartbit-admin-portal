@@ -1,34 +1,29 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useAuth0, User } from '@auth0/auth0-react';
-import { useRouter } from 'next/router';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Navbar = () => {
-  const router = useRouter();
   const { 
-    isAuthenticated,
+    error,
+    user,
     loginWithRedirect,
     logout
   } = useAuth0();
 
   let authLink;
-  if (isAuthenticated) {
+  if (user || error) { // Some user is logged in or an error has occured
     authLink = (
-      // <Link href="/data">
-        <a className="login-link" onClick={() => {
-          logout({ returnTo: router.asPath })
-        }}>
-          Logout
-        </a>
-      // </Link>
+      <a className="login-link" onClick={() => {
+        logout({ returnTo: process.env.NEXT_PUBLIC_AUTH0_REDIRECT })
+      }}>
+        Logout
+      </a>
     )
   } else {
     authLink = (
-      // <Link href="/data">
-        <a className="login-link" onClick={loginWithRedirect}>
-          Login
-        </a>
-      // </Link>
+      <a className="login-link" onClick={loginWithRedirect}>
+        Login
+      </a>
     )
   }
 

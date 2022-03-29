@@ -1,17 +1,12 @@
 import Layout from '../comps/Layout';
 import '../styles/globals.scss';
 import SSRProvider from 'react-bootstrap/SSRProvider';
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
+import { Auth0Provider} from '@auth0/auth0-react';
 import { ApolloProvider } from "@apollo/client";
 import client from "../external/client.js"
-import { useRouter } from 'next/router';
-import Login from './login';
+import AuthRedirect from '../comps/AuthRedirect';
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  const { isAuthenticated } = useAuth0();
-  const page = (isAuthenticated) ? <Component {...pageProps} /> : <Login {...pageProps} />;
-
   return (
     <Auth0Provider
       domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN}
@@ -20,9 +15,11 @@ function MyApp({ Component, pageProps }) {
     >
       <SSRProvider>
         <ApolloProvider client={client}>
-          <Layout>
-            {page}
-          </Layout>
+          <AuthRedirect>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </AuthRedirect>
         </ApolloProvider>
       </SSRProvider>
     </Auth0Provider>

@@ -171,6 +171,18 @@ body {
   text-align: center;
 }
 
+.err-image {
+  margin: 10vh auto 3vh;
+  width: 600px;
+  height: 200px;
+}
+
+.err-text {
+  margin-bottom: 10vh;
+  text-align: center;
+  font-size: 24pt;
+}
+
 /*
 // uncomment for navbar-width responsive styling (if we make more pages)
 @media only screen and (max-width: 770px) {
