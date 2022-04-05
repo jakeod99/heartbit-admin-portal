@@ -19,6 +19,7 @@ class ExercisesForm extends React.Component {
       vaping: undefined,                // [VapingHistory]
       earliestCollection: undefined,    // DateTime
       latestCollection: undefined,      // DateTime
+      lastSearchTerms: undefined        // Set of search terms leading to the current query
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -62,7 +63,7 @@ class ExercisesForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.getExercises({
+    const searchTerms = {
       variables: {
         youngest: this.state.youngest,
         oldest: this.state.oldest,
@@ -78,7 +79,9 @@ class ExercisesForm extends React.Component {
         earliestCollection: this.state.earliestCollection,
         latestCollection: this.state.latestCollection
       }
-    })
+    };
+    this.props.getExercises(searchTerms);
+    this.setState({lastSearchTerms: searchTerms});
   }
 
   render() {

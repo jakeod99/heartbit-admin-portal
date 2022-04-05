@@ -1,7 +1,15 @@
+import { useLazyQuery } from "@apollo/client";
 import { Button, Table } from "react-bootstrap";
+import { BsDownload } from "react-icons/bs"
+import ONE_EXERCISE_DOWNLOAD from "../external/queries/oneExerciseDownload";
 
-const ExercisesTable = ({ data }) => {
-  if (data) {
+const ExercisesTable = ({ geData }) => {
+  const [downloadOneExercise, { loading: doeLoading, error: doeError, data: doeData }] = useLazyQuery(ONE_EXERCISE_DOWNLOAD, {
+    fetchPolicy: "no-cache", // Performance hit, but solves lack of overwrite on new fetch
+    skip: !geData
+  });
+
+  if (geData) {
     return ( 
       <div className="et-container">
         <Table striped className="et">
@@ -20,12 +28,13 @@ const ExercisesTable = ({ data }) => {
               <th className="et-head-bpm-out">Exhale</th>
               <th className="et-head-raw-hrv">Raw HRV</th>
               <th className="et-head-clean-hrv">Clean HRV</th>
-              <th className="et-head-data">Readings</th>
+              <th className="et-head-bpm">Average HR</th>
+              <th className="et-head-data">Data</th>
             </tr>
           </thead>
           <tbody className="et-body">
-            {data?.exercises?.map(exercise => (
-              <tr>
+            {geData?.exercises?.map(exercise => (
+              <tr key={exercise.id} value={exercise.id}>
                 <td className="et-body-date-collected">{exercise.dateCollected.split("T")[0]}</td>
                 <td className="et-body-email">{exercise.user.email}</td>
                 <td className="et-body-dob">{exercise.user.dob.split("T")[0]}</td>
@@ -35,12 +44,29 @@ const ExercisesTable = ({ data }) => {
                 <td className="et-body-weight">{exercise.user.weight}lbs</td>
                 <td className="et-body-tobacco">{exercise.user.smoking}</td>
                 <td className="et-body-vape">{exercise.user.vaping}</td>
-                <td className="et-body-bpm-in">{exercise.bpmIn}bpm</td>
-                <td className="et-body-bpm-out">{exercise.bpmOut}bpm</td>
-                <td className="et-body-raw-hrv">TODO</td>
-                <td className="et-body-clean-hrv">TODO</td>
+                <td className="et-body-bpm-in">{exercise.bpmIn.toFixed(2)}bpm</td>
+                <td className="et-body-bpm-out">{exercise.bpmOut.toFixed(2)}bpm</td>
+                <td className="et-body-raw-hrv">{exercise.hrv ? exercise.hrv.toFixed(2) + "ms" : "---"}</td>
+                <td className="et-body-clean-hrv">{exercise.cleanHrv ? exercise.cleanHrv.toFixed(2) + "ms" : "---"}</td>
+                <td className="et-body-bpm">{exercise.bpm ? exercise.bpm.toFixed(2) + "bpm" : "---"}</td>
                 <td className="et-body-data">
-                  <Button variant="primary">TODO</Button>
+                  <Button variant="primary" onClick={async () => {
+                    const eId = exercise.id;
+                    downloadOneExercise({variables: {id: eId}});
+
+                    const fileName = `exercise_${eId}.json`;
+                    const json = JSON.stringify(await doeData);
+                    const blob = new Blob([json],{type:'application/json'});
+                    const href = await URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = href;
+                    link.download = fileName;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}>
+                    <BsDownload />
+                  </Button>
                 </td>
               </tr>
             ))}
