@@ -1,8 +1,14 @@
+import { useLazyQuery } from "@apollo/client";
 import { Button } from "react-bootstrap";
 import { BsDownload } from "react-icons/bs";
+import EXERCISES_DOWNLOAD from "../external/queries/exercisesDownload";
 
-const ExercisesDownload = ({ downloadExercises, data }) => {
-  if (data) {
+const ExercisesDownload = ({geData}) => {
+  const [downloadExercises, { loading: deLoading, error: deError, data: deData }] = useLazyQuery(EXERCISES_DOWNLOAD, {
+    fetchPolicy: "no-cache", // Performance hit, but solves lack of overwrite on new fetch
+  });
+
+  if (geData) {
     return ( 
       <div className="ed-container">
         <Button className="ed">

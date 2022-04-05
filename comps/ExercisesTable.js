@@ -4,9 +4,21 @@ import { BsDownload } from "react-icons/bs"
 import ONE_EXERCISE_DOWNLOAD from "../external/queries/oneExerciseDownload";
 
 const ExercisesTable = ({ geData }) => {
-  const [downloadOneExercise, { loading: doeLoading, error: doeError, data: doeData }] = useLazyQuery(ONE_EXERCISE_DOWNLOAD, {
+  const [downloadOneExercise] = useLazyQuery(ONE_EXERCISE_DOWNLOAD, {
     fetchPolicy: "no-cache", // Performance hit, but solves lack of overwrite on new fetch
-    skip: !geData
+    skip: !geData,
+    onCompleted: data => {
+      const fileName = `exercise_${data.exercise.user.givenName}_${data.exercise.user.surname}_${data.exercise.id}.json`;
+      const json = JSON.stringify(data);
+      const blob = new Blob([json],{type:'application/json'});
+      const href = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = href;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   });
 
   if (geData) {
@@ -50,20 +62,9 @@ const ExercisesTable = ({ geData }) => {
                 <td className="et-body-clean-hrv">{exercise.cleanHrv ? exercise.cleanHrv.toFixed(2) + "ms" : "---"}</td>
                 <td className="et-body-bpm">{exercise.bpm ? exercise.bpm.toFixed(2) + "bpm" : "---"}</td>
                 <td className="et-body-data">
-                  <Button variant="primary" onClick={async () => {
+                  <Button variant="primary" onClick={() => {
                     const eId = exercise.id;
-                    downloadOneExercise({variables: {id: eId}});
-
-                    const fileName = `exercise_${eId}.json`;
-                    const json = JSON.stringify(await doeData);
-                    const blob = new Blob([json],{type:'application/json'});
-                    const href = await URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = href;
-                    link.download = fileName;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    downloadOneExercise({variables: {id: eId}})
                   }}>
                     <BsDownload />
                   </Button>

@@ -138,8 +138,13 @@ body {
   color: var(--orange);
 }
 
-.et {
-  margin-top: 25px;
+.ed-container {
+  display: flex;
+  align-items: center;
+}
+
+.ed {
+  margin: 25px auto 15px auto;
 }
 
 .et > thead > tr > th,
