@@ -1,7 +1,17 @@
-import { Button, Table } from "react-bootstrap";
+import { useLazyQuery } from "@apollo/client";
+import { Button, Container, Table } from "react-bootstrap";
+import { BsDownload } from "react-icons/bs"
+import zipDownload from "../util/download";
+import ONE_EXERCISE_DOWNLOAD from "../external/queries/oneExerciseDownload";
 
-const ExercisesTable = ({ data }) => {
-  if (data) {
+const ExercisesTable = ({ geLoading, geData }) => {
+  const [downloadOneExercise] = useLazyQuery(ONE_EXERCISE_DOWNLOAD, {
+    fetchPolicy: "no-cache", // Performance hit, but solves lack of overwrite on new fetch
+    skip: !geData,
+    onCompleted: data => zipDownload(data)
+  });
+
+  if (geData?.exercises?.length > 0) {
     return ( 
       <div className="et-container">
         <Table striped className="et">
@@ -20,12 +30,13 @@ const ExercisesTable = ({ data }) => {
               <th className="et-head-bpm-out">Exhale</th>
               <th className="et-head-raw-hrv">Raw HRV</th>
               <th className="et-head-clean-hrv">Clean HRV</th>
-              <th className="et-head-data">Readings</th>
+              <th className="et-head-bpm">Average HR</th>
+              <th className="et-head-data">Data</th>
             </tr>
           </thead>
           <tbody className="et-body">
-            {data?.exercises?.map(exercise => (
-              <tr>
+            {geData?.exercises?.map(exercise => (
+              <tr key={exercise.id} value={exercise.id}>
                 <td className="et-body-date-collected">{exercise.dateCollected.split("T")[0]}</td>
                 <td className="et-body-email">{exercise.user.email}</td>
                 <td className="et-body-dob">{exercise.user.dob.split("T")[0]}</td>
@@ -35,12 +46,18 @@ const ExercisesTable = ({ data }) => {
                 <td className="et-body-weight">{exercise.user.weight}lbs</td>
                 <td className="et-body-tobacco">{exercise.user.smoking}</td>
                 <td className="et-body-vape">{exercise.user.vaping}</td>
-                <td className="et-body-bpm-in">{exercise.bpmIn}bpm</td>
-                <td className="et-body-bpm-out">{exercise.bpmOut}bpm</td>
-                <td className="et-body-raw-hrv">TODO</td>
-                <td className="et-body-clean-hrv">TODO</td>
+                <td className="et-body-bpm-in">{exercise.bpmIn.toFixed(2)}bpm</td>
+                <td className="et-body-bpm-out">{exercise.bpmOut.toFixed(2)}bpm</td>
+                <td className="et-body-raw-hrv">{exercise.hrv ? exercise.hrv.toFixed(2) + "ms" : "---"}</td>
+                <td className="et-body-clean-hrv">{exercise.cleanHrv ? exercise.cleanHrv.toFixed(2) + "ms" : "---"}</td>
+                <td className="et-body-bpm">{exercise.bpm ? exercise.bpm.toFixed(2) + "bpm" : "---"}</td>
                 <td className="et-body-data">
-                  <Button variant="primary">TODO</Button>
+                  <Button variant="primary" onClick={() => {
+                    const eId = exercise.id;
+                    downloadOneExercise({variables: {id: eId}})
+                  }}>
+                    <BsDownload />
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -49,9 +66,19 @@ const ExercisesTable = ({ data }) => {
       </div>
     );
   } else {
-    return ( 
-      <></>
-    );
+    if (geLoading) {
+      return ( 
+        <div className="et-message-container">
+          <div className="et-message">Loading...</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="et-message-container">
+          <div className="et-message">No Query Results to Display</div>
+        </div>
+      );
+    }
   }
 }
  

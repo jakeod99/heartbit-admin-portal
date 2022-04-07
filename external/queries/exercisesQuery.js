@@ -7,7 +7,6 @@ const EXERCISES_QUERY = gql`
     $lightest: Int
     $heaviest: Int
     $email: String
-    $groupId: String
     $sex: [Sex]
     $gender: [Gender]
     $race: [Race]
@@ -22,7 +21,6 @@ const EXERCISES_QUERY = gql`
       lightest: $lightest,
       heaviest: $heaviest,
       email: $email,
-      groupId: $groupId,
       sex: $sex,
       gender: $gender,
       race: $race,
@@ -35,7 +33,9 @@ const EXERCISES_QUERY = gql`
       bpmIn,
       bpmOut,
       dateCollected,
-      status,
+      hrv,
+      cleanHrv,
+      bpm,
       user {
         email,
         dob,

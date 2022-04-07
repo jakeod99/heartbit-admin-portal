@@ -138,8 +138,14 @@ body {
   color: var(--orange);
 }
 
-.et {
-  margin-top: 25px;
+.ed-container,
+.et-message-container {
+  display: flex;
+  align-items: center;
+}
+
+.ed {
+  margin: 25px auto 15px auto;
 }
 
 .et > thead > tr > th,
@@ -163,6 +169,12 @@ body {
 .et-head-date-collected, 
 .et-body-date-collected {
   min-width: 105px;
+}
+
+.et-message,
+.ed-message {
+  margin: 20pt auto 10pt auto;
+  font-size: 24pt;
 }
 
 .footer {
