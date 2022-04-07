@@ -33,7 +33,7 @@ const zipDownload = (data) => {
   if (!data.exercise && (!data.exercises || data.exercises.length < 1)) return;
 
   const zip = new JSZip();
-  const rootFolderName = `heartbit_exercise_download_${cleanDate((new Date).toISOString())}`;
+  const rootFolderName = `heartbit_data_download_${cleanDate((new Date).toISOString())}`;
   const rootFolder = zip.folder(rootFolderName);
   if (data.exercise) {
     populateFilesForExercise(rootFolder, data.exercise);
@@ -48,14 +48,3 @@ const zipDownload = (data) => {
 }
  
 export default zipDownload;
-
-// const fileName = `exercise_${data.exercise.user.givenName}_${data.exercise.user.surname}_${data.exercise.id}.json`;
-// const json = JSON.stringify(data);
-// const blob = new Blob([json],{type:'application/json'});
-// const href = URL.createObjectURL(blob);
-// const link = document.createElement('a');
-// link.href = href;
-// link.download = fileName;
-// document.body.appendChild(link);
-// link.click();
-// document.body.removeChild(link);
