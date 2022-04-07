@@ -28,19 +28,25 @@ const EXERCISES_DOWNLOAD = gql`
       vaping: $vaping,
       earliestCollection: $earliestCollection,
       latestCollection: $latestCollection,
-    ) {
+    ) { 
       id,
       bpmIn,
       bpmOut,
       dateCollected,
       hrv,
       cleanHrv,
-      bpm,
       data,
       user {
         email,
         givenName,
-        surname
+        surname,
+        smoking,
+        vaping,
+        weight,
+        sex,
+        gender,
+        race,
+        dob
       }
     }
   }

@@ -9,12 +9,18 @@ const ONE_EXERCISE_DOWNLOAD = gql`
       dateCollected,
       hrv,
       cleanHrv,
-      bpm,
       data,
       user {
         email,
         givenName,
-        surname
+        surname,
+        smoking,
+        vaping,
+        weight,
+        sex,
+        gender,
+        race,
+        dob
       }
     }
   }

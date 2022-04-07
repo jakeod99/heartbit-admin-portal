@@ -1,24 +1,14 @@
 import { useLazyQuery } from "@apollo/client";
 import { Button, Table } from "react-bootstrap";
 import { BsDownload } from "react-icons/bs"
+import zipDownload from "../util/download";
 import ONE_EXERCISE_DOWNLOAD from "../external/queries/oneExerciseDownload";
 
 const ExercisesTable = ({ geData }) => {
   const [downloadOneExercise] = useLazyQuery(ONE_EXERCISE_DOWNLOAD, {
     fetchPolicy: "no-cache", // Performance hit, but solves lack of overwrite on new fetch
     skip: !geData,
-    onCompleted: data => {
-      const fileName = `exercise_${data.exercise.user.givenName}_${data.exercise.user.surname}_${data.exercise.id}.json`;
-      const json = JSON.stringify(data);
-      const blob = new Blob([json],{type:'application/json'});
-      const href = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = href;
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    onCompleted: data => zipDownload(data)
   });
 
   if (geData) {
