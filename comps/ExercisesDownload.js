@@ -11,10 +11,14 @@ const ExercisesDownload = ({lastSearchTerms, geData}) => {
     onCompleted: data => zipDownload(data)
   });
 
-  if (geData) {
+  if (geData?.exercises?.length > 0) {
     if (deLoading) {
       return (
-        <div>Loading...</div>
+        <div className="ed-container">
+          <div className="ed-message">
+            Loading...
+          </div>
+        </div>
       );
     } else {
       return ( 

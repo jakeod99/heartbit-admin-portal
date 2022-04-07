@@ -6,23 +6,6 @@ class ExercisesForm extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   youngest: undefined,              // Int
-    //   oldest: undefined,                // Int
-    //   lightest: undefined,              // Int
-    //   heaviest: undefined,              // Int
-    //   email: undefined,                 // String
-    //   groupId: undefined,               // String
-    //   sex: undefined,                   // [Sex]
-    //   gender: undefined,                // [Gender]
-    //   race: undefined,                  // [Race]
-    //   smoking: undefined,               // [SmokingHistory]
-    //   vaping: undefined,                // [VapingHistory]
-    //   earliestCollection: undefined,    // DateTime
-    //   latestCollection: undefined,      // DateTime
-    //   lastSearchTerms: undefined        // Set of search terms leading to the current query
-    // };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
