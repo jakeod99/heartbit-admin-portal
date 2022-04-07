@@ -1,6 +1,8 @@
 # HeartBit Admin Portal
 
-To visit the HeartBit Admin Portal, follow this link: https://heartbit-admin-portal.vercel.app/
+***Warning**: Just before graduation, I forked this repo for others to carry on with potential future development. While this is the original repo, this is **not** the most up-to-date, nor is it the source Vercel uses to host. For that, look here: https://github.com/heartbitbaschnagel/heartbit-admin*
+
+~~To visit the HeartBit Admin Portal, follow this link: https://heartbit-admin-portal.vercel.app/~~
 
 This site was built with Next.js and is hosted on Vercel.
 
